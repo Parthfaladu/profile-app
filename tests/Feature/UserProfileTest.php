@@ -15,31 +15,34 @@ class UserProfileTest extends TestCase
 
     public function test_create_user_profile()
     {
-
         $postData = [
-            'firstName' => $this->faker->name,
-            'lastName' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => bcrypt('123123'),
+            'firstName'       => $this->faker->name,
+            'lastName'        => $this->faker->name,
+            'email'           => $this->faker->unique()->safeEmail,
+            'password'        => bcrypt('123123'),
             'workExperiences' => [
-              'comapnyName' => $this->faker->company,
-              'role' => $this->faker->word,
-              'startedAt' => Carbon::now(),
-              'endAtCurrentWorking' => true,
-              'endAt' => null,
-              'description' => $this->faker->sentence($nbWords = 6, $variableNbWords = true) ,
+                [
+                    'comapnyName'         => $this->faker->company,
+                    'role'                => $this->faker->word,
+                    'startedAt'           => Carbon::now()->format('d-m-Y'),
+                    'endAtCurrentWorking' => true,
+                    'endAt'               => null,
+                    'description'         => $this->faker->sentence($nbWords = 6, $variableNbWords = true)
+                ]
             ],
             'organizations' => [
-                'name' => $this->faker->company,
-                'associatedAs' => 'partner',
-                'startedAt' => Carbon::now(),
-                'endAtCurrentWorking' => true,
-                'endAt' => null,
-                'description' => $this->faker->sentence($nbWords = 6, $variableNbWords = true) ,
+                [
+                    'name'                => $this->faker->company,
+                    'associatedAs'        => 'partner',
+                    'startedAt'           => Carbon::now()->format('d-m-Y'),
+                    'endAtCurrentWorking' => true,
+                    'endAt'               => null,
+                    'description'         => $this->faker->sentence($nbWords = 6, $variableNbWords = true)
+                ]
             ]
         ];
 
-        // $this->postJson('/profile/create', $postData)
-        //     ->assertStatus(201);
+        $this->postJson('/profile/create', $postData)
+            ->assertStatus(200);
     }
 }
