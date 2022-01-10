@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
 use App\Models\{User, OrganizationAssociation, WorkExperience};
-use App\Http\Requests\{ProfileCreateRequest, ProfileLoginRequest};
+use App\Http\Requests\{ProfileCreateRequest, ProfileLoginRequest, ProfileUpdateRequest};
 use App\Http\Resources\UserResource;
 use Session;
 
